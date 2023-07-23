@@ -1,0 +1,105 @@
+<!--Code To Add ShowTime Form-->
+<div>
+    <mat-card>
+        <mat-toolbar color="primary">
+            <h1>Add ShowTime</h1>
+        </mat-toolbar>
+        <mat-card-content>
+            <form #addShowTime="ngForm" class="myForm">
+
+                <!--Movie Id Field With Validation -->
+                <mat-form-field class="full-width">
+                    <mat-label>Movie Id</mat-label>
+                    <input type="number" matInput ngModel #movieId="ngModel" name="movieId" id="movieId"
+                        placeholder="Enter Movie Id" required>
+                    <mat-error *ngIf="movieId.invalid && (movieId.touched || movieId.dirty)">
+                        <mat-error *ngIf="movieId.errors?.['required']">Movie Id is Mandatory</mat-error>
+                        <mat-error *ngIf="movieId.errors?.['movieIdDoesnotExist']">Movie Id doesnot Exit</mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <!--This Button Will Check If Movie Details Is Present In DB or Not, Only If It Is Present
+                It Will Auto Display All The Movie Related Deatils and Button Will Be Hidden-->
+                <button (click)="retrieveMovieByID(addShowTime)" *ngIf="!moviePresent" mat-raised-button
+                    color="primary">Verify Movie Id</button>
+
+                <!--Movie Name Field Will Be Display If Movie Details Exist With That Id -->
+                <mat-form-field class="full-width" *ngIf="moviePresent">
+                    <mat-label>Movie Name</mat-label>
+                    <input type="text" #movieName="ngModel" matInput [(ngModel)]="movie.movieName" name="movieName"
+                        id="movieName" disabled>
+                </mat-form-field>
+
+                <!--Movie Language Field Will Be Display If Movie Details Exist With That Id -->
+                <mat-form-field class="full-width" *ngIf="moviePresent">
+                    <mat-label>Language</mat-label>
+                    <input type="text" #movieName="ngModel" matInput [(ngModel)]="movie.language" name="language"
+                        id="language" disabled>
+                </mat-form-field>
+
+                <!--Theatre Id Field With Validation -->
+                <mat-form-field class="full-width" *ngIf="moviePresent">
+                    <mat-label>Theatre Id</mat-label>
+                    <input type="number" matInput ngModel #theatreId="ngModel" name="theatreId" id="theatreId"
+                        placeholder="Enter Theatre Id" required>
+                    <mat-error *ngIf="theatreId.invalid && (theatreId.touched || theatreId.dirty)">
+                        <mat-error *ngIf="theatreId.errors?.['required']">Theatre Id is Mandatory</mat-error>
+                        <mat-error *ngIf="theatreId.errors?.['theatreIdDoesnotExist']">Theatre Id doesnot Exit
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <!--This Button Will Check If Theatre Details Is Present In DB or Not, Only If It Is Present
+                It Will Auto Display All The Theatre Related Deatils and Button Will Be Hidden-->
+                <button (click)="retrieveTheatreByID(addShowTime)" *ngIf=" moviePresent && !theatrePresent"
+                    mat-raised-button color="primary">Verify Theatre Id</button>
+
+                <!--Theatre Name Field Will Be Display If Movie Details Exist With That Id -->
+                <mat-form-field class="full-width" *ngIf="theatrePresent">
+                    <mat-label>Theatre Name</mat-label>
+                    <input type="text" #theatreName="ngModel" matInput [(ngModel)]="theatre.theatreName"
+                        name="theatreName" id="theatreName" placeholder="Enter Theatre Name" required disabled>
+                    <mat-error *ngIf="theatreName.invalid && (theatreName.dirty || theatreName.touched)">
+                        <mat-error *ngIf="theatreName.errors?.['required']">Theatre Name is mandatory</mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <!--Theatre Address Field Will Be Display If Movie Details Exist With That Id -->
+                <mat-form-field class="full-width" *ngIf="theatrePresent">
+                    <mat-label>Address</mat-label>
+                    <input type="text" matInput #address="ngModel" [(ngModel)]="theatre.address" name="address"
+                        id="address" placeholder="Enter Address" required disabled>
+                    <mat-error *ngIf="address.invalid &&(address.dirty || address.touched)">
+                        <mat-error *ngIf="address.errors?.['required']">Address is mandatory</mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <!--Theatre No.of.seats Field Will Be Display If Movie Details Exist With That Id -->
+                <mat-form-field class="full-width" *ngIf="theatrePresent && moviePresent ">
+                    <mat-label>Number of Seats</mat-label>
+                    <input type="datetime-local" matInput #showTime="ngModel" ngModel name="showTime" id="showTime"
+                        placeholder="Enter Date and Time of The Show" required>
+                    <mat-error *ngIf="showTime.invalid &&(showTime.dirty || showTime.touched)">
+                        <mat-error *ngIf="showTime.errors?.['required']">Show Date and Time is mandatory</mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <!--ShowTime Price Per Ticket Field With Validation-->
+                <mat-form-field class="full-width" *ngIf="theatrePresent && moviePresent ">
+                    <mat-label>Price Per Ticket</mat-label>
+                    <input type="text" matInput #pricePerTicket="ngModel" ngModel name="pricePerTicket"
+                        id="pricePerTicket" placeholder="Enter Price Per Ticket" required>
+                    <mat-error *ngIf="pricePerTicket.invalid &&(pricePerTicket.dirty || pricePerTicket.touched)">
+                        <mat-error *ngIf="pricePerTicket.errors?.['required']">Ticket Price is mandatory</mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+
+        <button style="margin-top:-11px;" mat-raised-button [disabled]="addShowTime.invalid"
+            (click)="save(addShowTime.value)" color="primary">
+            <mat-icon>save</mat-icon> Save
+        </button>
+    </mat-card>
+</div>
+<!--Code Ends Here-->

@@ -1,0 +1,38 @@
+<mat-card>
+
+  <mat-toolbar color="primary">
+    <h3>Login</h3>
+  </mat-toolbar>
+
+  <mat-card-content>
+
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="my-form">
+
+      <mat-form-field class="full-width">
+        <mat-label>Username </mat-label>
+        <input matInput type="text" matInput ngModel name="userName" id="userName" required>
+        <mat-error>
+          Please provide a valid username
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label for="userPassword">Password:</mat-label>
+        <input matInput ngModel type="password" id="userPassword" name="userPassword"
+          placeholder="Enter your password" />
+        <mat-error>
+          Please provide a valid password
+        </mat-error>
+      </mat-form-field>
+
+    </form>
+
+  </mat-card-content>
+  
+  <mat-card-actions>
+    <span><button mat-raised-button color="primary" (click)="login(loginForm)">Login</button></span>
+    <span><a routerLink="/forgot-password">Forgot Password?</a></span>
+  </mat-card-actions>
+
+
+</mat-card>

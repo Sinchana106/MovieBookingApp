@@ -1,0 +1,40 @@
+<!--Code To Add Theatre Details-->
+<div>
+    <mat-card>
+
+        <mat-toolbar color="primary">
+            <h1>Add Theatre Details</h1>
+        </mat-toolbar>
+
+        <mat-card-content>
+            <form #addTheatre="ngForm" class="myForm">
+
+                <!--Theatre Name Field With Validations-->
+                <mat-form-field class="full-width">
+                    <mat-label>Theatre Name</mat-label>
+                    <input type="text" #theatreName="ngModel" matInput ngModel name="theatreName" id="theatreName"
+                        placeholder="Enter Theatre Name" required>
+                    <mat-error *ngIf="theatreName.invalid && (theatreName.dirty || theatreName.touched)">
+                        <mat-error *ngIf="theatreName.errors?.['required']">Theatre Name is mandatory</mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <!--Theatre Address Field With Validations-->
+                <mat-form-field class="full-width">
+                    <mat-label>Address</mat-label>
+                    <input type="text" matInput #address="ngModel" ngModel name="address" id="address"
+                        placeholder="Enter Address" required>
+                    <mat-error *ngIf="address.invalid &&(address.dirty || address.touched)">
+                        <mat-error *ngIf="address.errors?.['required']">Address is mandatory</mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+
+        <button mat-raised-button [disabled]="addTheatre.invalid" (click)="save(addTheatre)" color="primary">
+            <mat-icon>save</mat-icon> Save
+        </button>
+        
+    </mat-card>
+</div>
+<!--Code Ends Here-->

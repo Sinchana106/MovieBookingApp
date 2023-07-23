@@ -1,0 +1,134 @@
+<h1><b>SHOW TIME DETAILS</b></h1>\
+
+<!--Code for Search Bar for Movie Name-->
+<form #searchForm="ngForm" class="my-form">
+  <mat-form-field class="full-width">
+    <mat-label>MovieName </mat-label>
+    <input matInput type="text" ngModel name="movieName" id="movieName">
+    <mat-error>
+      Please provide a valid Movie Name
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="searchMovie(searchForm)">Search</button>
+  <!--Code Ends Here-->
+
+  <!--Code for Search Bar for Theatre Name-->
+  <mat-form-field class="full-width">
+    <mat-label>TheatreName </mat-label>
+    <input matInput type="text" ngModel name="theatreName" id="theatreName">
+    <mat-error>
+      Please provide a valid Theatre Name
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="searchTheatre(searchForm)">Search</button>
+  <!--Code Ends Here-->
+
+  <!--Code for Adding New ShowTime for Theatre Name-->
+  <button mat-raised-button color="primary" routerLink="/add-showtime">
+    <mat-icon>add</mat-icon> Add Show Time
+  </button>
+  <!--Code Ends Here-->
+</form>
+
+
+<!--Code To Display ShowTime Table-->
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="showTimeDetails">
+
+    <!--ShowTime ID Column-->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>Sl. No</mat-header-cell>
+      <mat-cell *matCellDef="let showTimeDetails"> {{showTimeDetails.id}} </mat-cell>
+    </ng-container>
+
+    <!--Movie ID Column-->
+    <ng-container matColumnDef="movieId">
+      <mat-header-cell *matHeaderCellDef> Movie Id </mat-header-cell>
+      <mat-cell *matCellDef="let showTimeDetails"> {{showTimeDetails.movie.movieId}} </mat-cell>
+    </ng-container>
+
+    <!--Movie Name Column-->
+    <ng-container matColumnDef="movieName">
+      <mat-header-cell *matHeaderCellDef>Movie Name </mat-header-cell>
+      <mat-cell *matCellDef="let showTimeDetails"> {{showTimeDetails.movie.movieName}} </mat-cell>
+    </ng-container>
+
+    <!-- Movie Language Column-->
+    <ng-container matColumnDef="language">
+      <mat-header-cell *matHeaderCellDef>Language </mat-header-cell>
+      <mat-cell *matCellDef="let showTimeDetails"> {{showTimeDetails.movie.language}} </mat-cell>
+    </ng-container>
+
+    <!--Movie Release Year Column-->
+    <ng-container matColumnDef="releaseYear">
+      <mat-header-cell *matHeaderCellDef> Release Year </mat-header-cell>
+      <mat-cell *matCellDef="let showTimeDetails"> {{showTimeDetails.movie.releaseYear}} </mat-cell>
+    </ng-container>
+
+
+    <!--Theatre ID Column-->
+    <ng-container matColumnDef="theatreId">
+      <mat-header-cell *matHeaderCellDef> Theatre Id </mat-header-cell>
+      <mat-cell *matCellDef="let showTimeDetails"> {{showTimeDetails.theatre.theatreId}} </mat-cell>
+    </ng-container>
+
+
+    <!--Theatre Name Column-->
+    <ng-container matColumnDef="theatreName">
+      <mat-header-cell *matHeaderCellDef>Theatre Name </mat-header-cell>
+      <mat-cell *matCellDef="let showTimeDetails"> {{showTimeDetails.theatre.theatreName}} </mat-cell>
+    </ng-container>
+
+    <!--Theatre Address Column-->
+    <ng-container matColumnDef="address">
+      <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+      <mat-cell *matCellDef="let showTimeDetails"> {{showTimeDetails.theatre.address}} </mat-cell>
+    </ng-container>
+
+    <!--Theatre Number Of Seats Column-->
+    <ng-container matColumnDef="noOfSeats">
+      <mat-header-cell *matHeaderCellDef> Number Of Seats </mat-header-cell>
+      <mat-cell *matCellDef="let showTimeDetails"> {{showTimeDetails.theatre.noOfSeats}} </mat-cell>
+    </ng-container>
+
+
+    <!--ShowTime other fields-->
+    <ng-container matColumnDef="showTime">
+      <mat-header-cell *matHeaderCellDef> ShowTime </mat-header-cell>
+      <mat-cell *matCellDef="let showTimeDetails"> {{showTimeDetails.showTime}} </mat-cell>
+    </ng-container>
+
+    <!--Show Time Price Per Ticket Column-->
+    <ng-container matColumnDef="pricePerTicket">
+      <mat-header-cell *matHeaderCellDef> Price Per Ticket </mat-header-cell>
+      <mat-cell *matCellDef="let showTimeDetails"> {{showTimeDetails.pricePerTicket}} </mat-cell>
+    </ng-container>
+
+    <!--Show Time Total Number Of Column-->
+    <ng-container matColumnDef="totalNoOfTickets">
+      <mat-header-cell *matHeaderCellDef> Total Number of Tickets </mat-header-cell>
+      <mat-cell *matCellDef="let showTimeDetails"> {{showTimeDetails.totalNoOfTickets}} </mat-cell>
+    </ng-container>
+
+    <!--Show Time Available Ticket Column-->
+    <ng-container matColumnDef="availableTickets">
+      <mat-header-cell *matHeaderCellDef> Available Tickets </mat-header-cell>
+      <mat-cell *matCellDef="let showTimeDetails"> {{showTimeDetails.availableTickets}} </mat-cell>
+    </ng-container>
+
+
+    <!--Show Time Ticket Status Column-->
+    <ng-container matColumnDef="ticketStatus">
+      <mat-header-cell *matHeaderCellDef>Ticket Status </mat-header-cell>
+      <mat-cell *matCellDef="let showTimeDetails">
+        <b *ngIf="showTimeDetails.ticketStatus=='Available'" style="color:green">AVAILABLE</b>
+        <b *ngIf="showTimeDetails.ticketStatus=='Sold Out'" style="color:red">SOLD OUT</b>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+</div>
+<!--Code Ends Here-->

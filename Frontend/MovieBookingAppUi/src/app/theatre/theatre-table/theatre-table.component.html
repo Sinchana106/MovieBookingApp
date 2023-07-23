@@ -1,0 +1,57 @@
+<h1><b>THEATRE </b></h1>
+
+<!--Code To Search Theatre Deatils By Theatre Name-->
+<form #searchForm="ngForm" class="my-form">
+  <mat-form-field class="full-width">
+    <mat-label>Theatre Name </mat-label>
+    <input matInput type="text" ngModel name="theatreName" id="theatreName">
+    <mat-error>
+      Please provide a valid Theatre Name
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="searchTheatre(searchForm)">Search</button>
+  <!--Code Ends Here-->
+
+  <!--Code To Display Button To Add Theatre Details-->
+  <button mat-raised-button color="primary" routerLink="/add-theatre">
+    <mat-icon>add</mat-icon> Add Theatre
+  </button>
+</form>
+<!--Code Ends Here-->
+
+<!--To Display Theatre Table-->
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="theatres">
+
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- heatre Id Column -->
+    <ng-container matColumnDef="theatreId">
+      <mat-header-cell *matHeaderCellDef> Theatre Id </mat-header-cell>
+      <mat-cell *matCellDef="let theatre"> {{theatre.theatreId}} </mat-cell>
+    </ng-container>
+
+    <!-- Theatre Name Column -->
+    <ng-container matColumnDef="theatreName">
+      <mat-header-cell *matHeaderCellDef>Theatre Name </mat-header-cell>
+      <mat-cell *matCellDef="let theatre"> {{theatre.theatreName}} </mat-cell>
+    </ng-container>
+
+    <!-- Theatre Address Column -->
+    <ng-container matColumnDef="address">
+      <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+      <mat-cell *matCellDef="let theatre"> {{theatre.address}} </mat-cell>
+    </ng-container>
+
+     <!-- Theatre No.Of.Seats Column -->
+    <ng-container matColumnDef="noOfSeats">
+      <mat-header-cell *matHeaderCellDef> Number Of Seats </mat-header-cell>
+      <mat-cell *matCellDef="let theatre"> {{theatre.noOfSeats}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+<!--Code Ends Here-->

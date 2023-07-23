@@ -1,0 +1,37 @@
+<div>
+    <mat-card>
+        <mat-toolbar color="primary"><h1>Update Movie</h1></mat-toolbar>
+        <mat-card-content>
+            <form #updateMovie="ngForm" class="myForm" >
+                <mat-form-field class="full-width">
+                    <mat-label>Movie Id</mat-label>
+                    <input type="number" matInput [(ngModel)]="movie.movieId" name="movieId" id="movieId" placeholder="Enter Movie Id" disabled>
+                    <mat-error>Enter Valid Movie Id</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <mat-label>Movie Name</mat-label>
+                    <input type="text" #movieName="ngModel" matInput [(ngModel)]="movie.movieName" name="movieName" id="movieName" placeholder="Enter Movie Name" required >
+                    <mat-error *ngIf="movieName.invalid && (movieName.dirty || movieName.touched)">
+                        <mat-error *ngIf="movieName.errors?.['required']">Movie Name is mandatory</mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field class="full-width">
+                    <mat-label>Release Year</mat-label>
+                    <input type="text" matInput  #releaseYear="ngModel" [(ngModel)]="movie.releaseYear" name="releaseYear" id="releaseYear" placeholder="Enter Release Year" pattern="^[1-9][0-9]{3}?$" required >
+                    <mat-error *ngIf="releaseYear.invalid &&(releaseYear.dirty || releaseYear.touched)">
+                        <mat-error *ngIf="releaseYear.errors?.['required']">Release Year is mandatory</mat-error>
+                        <mat-error *ngIf="releaseYear.errors?.['pattern']">Enter Valid Release Year</mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+            </form>
+        </mat-card-content>
+        <button type="submit" (click)="onSubmit()" mat-raised-button [disabled]="updateMovie.invalid" color="primary"><mat-icon>save</mat-icon> Save</button>
+        <mat-card-actions>
+
+        </mat-card-actions>
+    </mat-card>
+</div>

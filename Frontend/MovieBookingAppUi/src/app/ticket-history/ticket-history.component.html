@@ -1,0 +1,88 @@
+<h1><b>TICKETS BOOKED LIST</b></h1>
+<!-- Code To Display List Of Tickets Booked By All The User -->
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="tickets">
+
+    <!--Ticket Id Column-->
+    <ng-container matColumnDef="ticketId">
+      <mat-header-cell *matHeaderCellDef>Ticket Id</mat-header-cell>
+      <mat-cell *matCellDef="let ticket"> {{ticket.ticketId}} </mat-cell>
+    </ng-container>
+
+    <!--UserName Column-->
+    <ng-container matColumnDef="userName">
+      <mat-header-cell *matHeaderCellDef>UserName</mat-header-cell>
+      <mat-cell *matCellDef="let ticket"> {{ticket.userName}} </mat-cell>
+    </ng-container>
+
+    <!--ShowTime Id Column-->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>ShowTime Id</mat-header-cell>
+      <mat-cell *matCellDef="let ticket"> {{ticket.showTime.id}} </mat-cell>
+    </ng-container>
+
+    <!--Movie Name Column-->
+    <ng-container matColumnDef="movieName">
+      <mat-header-cell *matHeaderCellDef>Movie Name </mat-header-cell>
+      <mat-cell *matCellDef="let ticket"> {{ticket.showTime.movie.movieName}} </mat-cell>
+    </ng-container>
+
+    <!-- Language Column-->
+    <ng-container matColumnDef="language">
+      <mat-header-cell *matHeaderCellDef>Language </mat-header-cell>
+      <mat-cell *matCellDef="let ticket"> {{ticket.showTime.movie.language}} </mat-cell>
+    </ng-container>
+
+    <!--Release Year Column-->
+    <ng-container matColumnDef="releaseYear">
+      <mat-header-cell *matHeaderCellDef> Release Year </mat-header-cell>
+      <mat-cell *matCellDef="let ticket"> {{ticket.showTime.movie.releaseYear}} </mat-cell>
+    </ng-container>
+
+    <!--Theatre Name Column-->
+    <ng-container matColumnDef="theatreName">
+      <mat-header-cell *matHeaderCellDef>Theatre Name </mat-header-cell>
+      <mat-cell *matCellDef="let ticket"> {{ticket.showTime.theatre.theatreName}} </mat-cell>
+    </ng-container>
+
+    <!-- Address Column -->
+    <ng-container matColumnDef="address">
+      <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+      <mat-cell *matCellDef="let ticket"> {{ticket.showTime.theatre.address}} </mat-cell>
+    </ng-container>
+
+    <!--ShowTime Column-->
+    <ng-container matColumnDef="showTime">
+      <mat-header-cell *matHeaderCellDef> ShowTime </mat-header-cell>
+      <mat-cell *matCellDef="let ticket"> {{ticket.showTime.showTime}} </mat-cell>
+    </ng-container>
+
+    <!--Price Per Ticket Column-->
+    <ng-container matColumnDef="pricePerTicket">
+      <mat-header-cell *matHeaderCellDef> Price Per Ticket </mat-header-cell>
+      <mat-cell *matCellDef="let ticket"> {{ticket.showTime.pricePerTicket}} </mat-cell>
+    </ng-container>
+
+    <!--Booked Seats-->
+    <ng-container matColumnDef="seatsBooked">
+      <mat-header-cell *matHeaderCellDef> Booked Seats</mat-header-cell>
+      <mat-cell *matCellDef="let ticket"> {{ticket.seatsBooked}} </mat-cell>
+    </ng-container>
+
+    <!--Total Price Column-->
+    <ng-container matColumnDef="totalPrice">
+      <mat-header-cell *matHeaderCellDef> Total Price</mat-header-cell>
+      <mat-cell *matCellDef="let ticket"> {{ticket.totalPrice}} </mat-cell>
+    </ng-container>
+
+    <!--Booked Date Time Column-->
+    <ng-container matColumnDef="ticketBookedDateTime">
+      <mat-header-cell *matHeaderCellDef> Booked Date Time</mat-header-cell>
+      <mat-cell *matCellDef="let ticket"> {{ticket.ticketBookedDateTime}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+<!--Code Ends Here-->

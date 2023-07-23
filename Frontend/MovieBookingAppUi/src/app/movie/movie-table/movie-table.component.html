@@ -1,0 +1,58 @@
+<h1><b>MOVIES</b></h1>
+
+<!--Code Below Is Used To Search Movie Entries in Table By Movie Name-->
+<form #searchForm="ngForm" class="my-form">
+  <mat-form-field class="full-width">
+    <mat-label style="color:white">Movie Name </mat-label>
+    <input matInput type="text" ngModel name="movieName" id="movieName">
+    <mat-error>
+      Please provide a valid Movie Name
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="searchMovie(searchForm)">Search</button>
+  <!--Code Ends Here-->
+
+  <!--Code To Display Add Movie Button -->
+  <button mat-raised-button color="primary" routerLink="/add-movie">
+    <mat-icon>add</mat-icon> Add Movie
+  </button>
+</form>
+  <!--Code Ends Here-->
+
+<!--Code To Display Movie Table-->
+<div class="example-container mat-elevation-z8">
+
+  <mat-table #table [dataSource]="movies">
+
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Movie Id Column -->
+    <ng-container matColumnDef="movieId">
+      <mat-header-cell *matHeaderCellDef> Movie Id </mat-header-cell>
+      <mat-cell *matCellDef="let movie"> {{movie.movieId}} </mat-cell>
+    </ng-container>
+
+    <!-- Movie Name Column -->
+    <ng-container matColumnDef="movieName">
+      <mat-header-cell *matHeaderCellDef>Movie Name </mat-header-cell>
+      <mat-cell *matCellDef="let movie"> {{movie.movieName}} </mat-cell>
+    </ng-container>
+
+     <!-- Language Column -->
+    <ng-container matColumnDef="language">
+      <mat-header-cell *matHeaderCellDef>Language</mat-header-cell>
+      <mat-cell *matCellDef="let movie"> {{movie.language}} </mat-cell>
+    </ng-container>
+
+    <!-- Release Year Column -->
+    <ng-container matColumnDef="releaseYear">
+      <mat-header-cell *matHeaderCellDef> Release Year </mat-header-cell>
+      <mat-cell *matCellDef="let movie"> {{movie.releaseYear}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+<!--Code Ends Here-->

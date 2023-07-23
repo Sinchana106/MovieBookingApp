@@ -1,0 +1,69 @@
+<mat-toolbar color="primary">
+  Movie Booking App
+
+  <!--User will be displayed on Header only if role matches to User-->
+  <span *ngIf="userAuth.roleMatch(['User'])">
+    <a class="nav-link" routerLink="/user">User</a>
+  </span>
+
+  <!--Admin will be displayed on Header only if role matches to Admin-->
+  <span *ngIf="userAuth.roleMatch(['Admin'])">
+    <a class="nav-link" routerLink="/admin">Admin</a>
+  </span>
+
+  <!--Movie will be displayed on Header only if role matches to Admin-->
+  <span *ngIf="userAuth.roleMatch(['Admin'])">
+    <button mat-button routerLink="/view-movie">
+      <mat-icon>movie</mat-icon>
+      Movies
+    </button>
+  </span>
+
+   <!--Theatre will be displayed on Header only if role matches to Admin-->
+  <span *ngIf="userAuth.roleMatch(['Admin'])">
+    <button mat-button routerLink="/view-theatre">
+      Theatre
+    </button>
+  </span>
+
+   <!--My Tickets contains a list of tickets that are booked previously by that user.
+    It will be displayed on Header only if role matches to User-->
+  <span *ngIf="userAuth.roleMatch(['User'])">
+    <button mat-button routerLink="/my_ticket">
+      My Tickets
+    </button>
+  </span>
+
+  <!--Tickets Booked contains a list of tickets booked by User.
+    This will be displayed on Header only if role matches to Admin-->
+  <span *ngIf="userAuth.roleMatch(['Admin'])">
+    <button mat-button routerLink="/view-ticket">
+      Tickets Booked
+    </button>
+  </span>
+
+  <!--Below Code will Display Registration Button When User is Not LoggedIn-->
+  <span>
+    <button style="margin-left:1200px" mat-button *ngIf="!isLoggedIn()" (click)="register()">
+      <mat-icon>app_registration</mat-icon>
+      Register
+    </button>
+  </span>
+
+  <!--Below Code will Display Login Button When User is Not LoggedIn-->
+  <span>
+    <button mat-button *ngIf="!isLoggedIn()" (click)="login()">
+      <mat-icon>power_settings_new</mat-icon>
+      Login
+    </button>
+  </span>
+
+  <!--Below Code will Display LogOut Button When User is LoggedIn-->
+  <span>
+    <button style="margin-left:1200px" mat-button *ngIf="isLoggedIn()" color="warn" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      Logout
+    </button>
+  </span>
+
+</mat-toolbar>

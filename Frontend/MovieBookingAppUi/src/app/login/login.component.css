@@ -1,0 +1,36 @@
+.my-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+  padding: 10px;
+}
+
+mat-card {
+
+  max-width: 500px;
+
+  margin: 2em auto;
+
+  text-align: center;
+
+  margin-top: 10%;
+
+}
+
+h3 {
+  margin-left: 40%;
+}
+
+mat-form-field {
+
+  display: block;
+
+}
+
+span {
+  padding-left: 10px;
+}

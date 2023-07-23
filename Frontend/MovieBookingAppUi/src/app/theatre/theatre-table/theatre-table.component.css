@@ -1,0 +1,15 @@
+h1 {
+    text-align: center;
+    margin-top: 10px;
+    font-style: bold;
+    color: white
+}
+
+button {
+    margin: 10px
+}
+
+mat-form-field,
+mat-label {
+    color: white;
+}
